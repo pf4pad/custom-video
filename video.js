@@ -50,6 +50,31 @@ function videoMute() {
     btnVolume.classList.remove('btn-volume-play');
   }
 }
+
+// Изменение звука
+function volumeUpdate(e) { // Изменяем уровень громкости при использовании range
+  let volume = e.offsetX / rangeVolume.offsetWidth;
+  volume = Math.floor(volume * 100) / 100;
+  if (volume < 0.95)
+    volume += 0.05;
+  else if (volume >= 0.95)
+    volume = 1;
+  else if (volume > 0.05)
+    volume -= 0.05;
+  if (volume <= 0.05)
+    volume = 0;
+  video.volume = volume;
+  rangeVolume.value = volume * 100
+  rangeVolume.style.background = `linear-gradient(to right, #24809e 0%, #24809e ${volume * 100}%, #b3b3b3 ${volume * 100}%, #b3b3b3 100%)`;
+  if (video.volume == 0) {
+    buttonVolume.classList.remove('toggle-volume_volume');
+    buttonVolume.classList.add('toggle-volume_mute');
+  } else {
+    buttonVolume.classList.remove('toggle-volume_mute');
+    buttonVolume.classList.add('toggle-volume_volume');
+  }
+}
+
 buttonPlay.addEventListener('click', togglePlay);
 video.addEventListener('click', togglePlay);
 changeBtnPlay.addEventListener('click', togglePlay);
