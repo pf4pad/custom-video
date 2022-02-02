@@ -4,15 +4,14 @@ const poster = player.querySelector('.poster');
 const controlPanel = document.querySelector('.btn-video');
 const buttonPlay = player.querySelector('.btn-video');
 const changeBtnPlay = player.querySelector('.btn-play');
-
 const btnVolume = player.querySelector('.btn-volume ');
 const buttonFullScr = player.querySelector('.button-full-screen');
 const ranges = player.querySelectorAll('.range');
-const currTime = player.querySelector('.curr-time');
-const durationTime = player.querySelector('.duration-time');
-const progressVideo = document.querySelector('.progress-video');
+
+const progressVideo = document.querySelector('.progress');
 const rangeVolume = document.querySelector('.volume');
 
+let mousedown = false
 
 function togglePlay() {
   if (video.paused)
@@ -65,16 +64,24 @@ function volumeUpdate(e) { // Изменяем уровень громкости
     volume = 0;
   video.volume = volume;
   rangeVolume.value = volume * 100
-  rangeVolume.style.background = `linear-gradient(to right, #24809e 0%, #24809e ${volume * 100}%, #b3b3b3 ${volume * 100}%, #b3b3b3 100%)`;
+  rangeVolume.style.background = `linear-gradient(to right, #bdae82 0%, #bdae82 ${volume * 100}%, #c8c8c8 ${volume * 100}%, #c8c8c8 100%)`
+
   if (video.volume == 0) {
-    buttonVolume.classList.remove('toggle-volume_volume');
-    buttonVolume.classList.add('toggle-volume_mute');
+    btnVolume.classList.remove('btn-volume-play');
+    btnVolume.classList.add('mute');
   } else {
-    buttonVolume.classList.remove('toggle-volume_mute');
-    buttonVolume.classList.add('toggle-volume_volume');
+    btnVolume.classList.remove('mute');
+    btnVolume.classList.add('btn-volume-play');
   }
 }
 
+
+// Отображаем время воспроизведения
+function videoProgress() {
+  progress = ((Math.floor(video.currentTime) / Math.floor(video.duration)) * 100);
+  progressVideo.value = progress;
+  progressVideo.style.background = `linear-gradient(to right, #bdae82 0%, #bdae82 ${progress}%, #c8c8c8 ${progress}%, #c8c8c8 100%)`
+}
 buttonPlay.addEventListener('click', togglePlay);
 video.addEventListener('click', togglePlay);
 changeBtnPlay.addEventListener('click', togglePlay);
@@ -83,3 +90,8 @@ video.addEventListener('pause', updateButton);
 changeBtnPlay.addEventListener('pause', updateButton);
 changeBtnPlay.addEventListener('play', updateButton);
 btnVolume.addEventListener('click', videoMute);
+rangeVolume.addEventListener('click', volumeUpdate);
+rangeVolume.addEventListener('mousemove', (e) => mousedown && volumeUpdate(e));
+rangeVolume.addEventListener('mousedown', () => mousedown = true);
+rangeVolume.addEventListener('mouseup', () => mousedown = false);
+video.addEventListener('timeupdate', videoProgress);
