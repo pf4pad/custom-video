@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Castom-video</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./media.css">
+</head>
+
+<body>
+  <section class="section-video" id="video">
+    <div class="container">
+      <div class="title-container">
+        <h2 class="section-title" data-i18="video">Video</h2>
+      </div>
+      <div class="video-player">
+        <div class="poster"></div>
+
+        <video class="movie" src="./assets/video/video.mp4"></video>
+        <button class="btn-video"></button>
+        <div class="control">
+          <button class="btn-play play">
+          </button>
+          <input class="progress" type="range" name="progress-bar-video" id="progress-bar-video" value="0" min="0"
+            max="100" step="0.1" />
+
+          <div class="btn-play btn-volume btn-volume-play"></div>
+          <input class="volume" type="range" name="volume" id="volume" value="100" min="0" max="100" step="1" />
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <script src="video.js"></script>
+</body>
+
+</html>
