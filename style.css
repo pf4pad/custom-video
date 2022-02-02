@@ -378,7 +378,7 @@ section:not(:first-child) {
     background-image: url('./assets/svg/play.svg');
 }
 
-.play {
+.pause {
   
     background-image: url('./assets/svg/pause.svg');
 }

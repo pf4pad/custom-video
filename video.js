@@ -3,7 +3,7 @@ const video = document.querySelector('.movie');
 const poster = player.querySelector('.poster');
 const controlPanel = document.querySelector('.btn-video');
 const buttonPlay = player.querySelector('.btn-video');
-const changeBtnPlay = player.querySelector('.play');
+const changeBtnPlay = player.querySelector('.btn-play');
 
 const btnVolume = player.querySelector('.btn-volume ');
 const buttonFullScr = player.querySelector('.button-full-screen');
@@ -28,10 +28,13 @@ function updateButton() { // Меняем иконки Play или Pause
     buttonPlay.classList.add('button-pause');
     poster.classList.add('visually-hidden');
     changeBtnPlay.classList.add('pause')
+    changeBtnPlay.classList.remove('play')
   } else {
     buttonPlay.classList.remove('visually-hidden');
     buttonPlay.classList.remove('button-pause');
     buttonPlay.classList.add('button-play');
+    changeBtnPlay.classList.add('play')
+    changeBtnPlay.classList.remove('pause')
   }
 }
 
@@ -43,12 +46,15 @@ function videoMute() {
 
   } else {
     video.volume = 0;
-
     btnVolume.classList.add('mute');
     btnVolume.classList.remove('btn-volume-play');
   }
 }
 buttonPlay.addEventListener('click', togglePlay);
+video.addEventListener('click', togglePlay);
+changeBtnPlay.addEventListener('click', togglePlay);
 video.addEventListener('play', updateButton);
 video.addEventListener('pause', updateButton);
+changeBtnPlay.addEventListener('pause', updateButton);
+changeBtnPlay.addEventListener('play', updateButton);
 btnVolume.addEventListener('click', videoMute);
