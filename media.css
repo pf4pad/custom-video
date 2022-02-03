@@ -292,12 +292,12 @@ textarea {
   }
 
   .progress{
-  height: 10px;
+  height: 5px;
   width: calc(60% - 100px);
   }
   
   .volume {
-  height: 10px;
+  height: 5px;
   width: calc(60% - 140px);
   }
   .nav-mobile--active{
