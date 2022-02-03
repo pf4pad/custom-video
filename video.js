@@ -50,8 +50,8 @@ function videoMute() {
   }
 }
 
-// Изменение звука
-function volumeUpdate(e) { // Изменяем уровень громкости при использовании range
+// Изменение звука уровень громкости
+function volumeUpdate(e) {
   let volume = e.offsetX / rangeVolume.offsetWidth;
   volume = Math.floor(volume * 100) / 100;
   if (volume < 0.95)
@@ -82,6 +82,13 @@ function videoProgress() {
   progressVideo.value = progress;
   progressVideo.style.background = `linear-gradient(to right, #bdae82 0%, #bdae82 ${progress}%, #c8c8c8 ${progress}%, #c8c8c8 100%)`
 }
+// Перемотка видео
+function move(e) {
+  const moveTime = (e.offsetX / progressVideo.offsetWidth) * video.duration;
+  video.currentTime = moveTime;
+}
+
+
 buttonPlay.addEventListener('click', togglePlay);
 video.addEventListener('click', togglePlay);
 changeBtnPlay.addEventListener('click', togglePlay);
@@ -91,6 +98,9 @@ changeBtnPlay.addEventListener('pause', updateButton);
 changeBtnPlay.addEventListener('play', updateButton);
 btnVolume.addEventListener('click', videoMute);
 rangeVolume.addEventListener('click', volumeUpdate);
+
+
+progressVideo.addEventListener('click', move);
 rangeVolume.addEventListener('mousemove', (e) => mousedown && volumeUpdate(e));
 rangeVolume.addEventListener('mousedown', () => mousedown = true);
 rangeVolume.addEventListener('mouseup', () => mousedown = false);

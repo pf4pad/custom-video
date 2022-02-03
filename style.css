@@ -413,6 +413,30 @@ section:not(:first-child) {
 }
 .volume {
 width: calc(20% - 40px);
+background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(var(--gold)),
+    color-stop(100%, var(--gold)),
+    color-stop(100%, var(--white)),
+    to(var(--white))
+  );
+  background: -o-linear-gradient(
+    left,
+    var(--goldl) 0%,
+    var(--gold) 100%,
+    var(--white) 100%,
+    var(--white) 100%
+  );
+  background: linear-gradient(
+    to right,
+    var(--gold) 0%,
+    var(--gold) 100%,
+    var(--white) 100%,
+    var(--white) 100%
+  );
+
 }
 .btn-play:hover,
 .btn-video:hover {
