@@ -285,6 +285,21 @@ textarea {
   background-position: center ;
   background-repeat: no-repeat;
   }
+
+  .btn-play{
+    width: 25px;
+    height: 25px;
+  }
+
+  .progress{
+  height: 10px;
+  width: calc(60% - 100px);
+  }
+  
+  .volume {
+  height: 10px;
+  width: calc(60% - 140px);
+  }
   .nav-mobile--active{
     max-width: 100vw;
     
